@@ -40,10 +40,15 @@ const Contact = () => {
       ].join("\n")
     );
 
-    // Use Gmail compose URL so it works on Windows (no default mail app needed)
-    // and opens in a new tab with the message pre-filled
-    const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(EMAIL)}&su=${subject}&body=${body}`;
-    window.open(gmailUrl, "_blank", "noopener,noreferrer");
+    // On Windows, mailto: often fails (Chrome opens blank / "choose app").
+    // Use Gmail compose in a new tab there. On Mac/iPhone, mailto: works well (opens Mail).
+    const isWindows = /Windows|Win32|Win64/i.test(navigator.userAgent);
+    if (isWindows) {
+      const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(EMAIL)}&su=${subject}&body=${body}`;
+      window.open(gmailUrl, "_blank", "noopener,noreferrer");
+    } else {
+      window.location.href = `mailto:${EMAIL}?subject=${subject}&body=${body}`;
+    }
 
     toast({
       title: t.messageSent,
