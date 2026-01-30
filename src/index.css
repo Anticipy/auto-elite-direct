@@ -16,8 +16,8 @@
     --popover: 0 0% 8%;
     --popover-foreground: 0 0% 98%;
 
-    /* Electric blue accent */
-    --primary: 210 100% 50%;
+    /* Bold red accent - #e52024 */
+    --primary: 359 81% 52%;
     --primary-foreground: 0 0% 100%;
 
     --secondary: 0 0% 14%;
@@ -26,7 +26,7 @@
     --muted: 0 0% 18%;
     --muted-foreground: 0 0% 65%;
 
-    --accent: 210 100% 50%;
+    --accent: 359 81% 52%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84% 60%;
@@ -34,7 +34,7 @@
 
     --border: 0 0% 18%;
     --input: 0 0% 18%;
-    --ring: 210 100% 50%;
+    --ring: 359 81% 52%;
 
     --radius: 0.75rem;
 
@@ -42,26 +42,26 @@
     --surface: 0 0% 6%;
     --surface-elevated: 0 0% 10%;
     --text-secondary: 0 0% 70%;
-    --gradient-start: 210 100% 50%;
-    --gradient-end: 199 89% 48%;
+    --gradient-start: 359 81% 52%;
+    --gradient-end: 0 70% 45%;
     
     /* Glass effect */
     --glass-bg: 0 0% 10% / 0.8;
     --glass-border: 0 0% 100% / 0.1;
 
     /* Shadows */
-    --shadow-glow: 0 0 60px hsl(210 100% 50% / 0.3);
+    --shadow-glow: 0 0 60px hsl(359 81% 52% / 0.3);
     --shadow-card: 0 4px 24px hsl(0 0% 0% / 0.4);
 
     /* Sidebar (keeping defaults) */
     --sidebar-background: 0 0% 6%;
     --sidebar-foreground: 0 0% 98%;
-    --sidebar-primary: 210 100% 50%;
+    --sidebar-primary: 359 81% 52%;
     --sidebar-primary-foreground: 0 0% 100%;
     --sidebar-accent: 0 0% 14%;
     --sidebar-accent-foreground: 0 0% 98%;
     --sidebar-border: 0 0% 18%;
-    --sidebar-ring: 210 100% 50%;
+    --sidebar-ring: 359 81% 52%;
   }
 
   .light {
@@ -74,7 +74,7 @@
     --popover: 0 0% 100%;
     --popover-foreground: 0 0% 8%;
 
-    --primary: 210 100% 45%;
+    --primary: 359 81% 52%;
     --primary-foreground: 0 0% 100%;
 
     --secondary: 0 0% 96%;
@@ -83,19 +83,19 @@
     --muted: 0 0% 94%;
     --muted-foreground: 0 0% 40%;
 
-    --accent: 210 100% 45%;
+    --accent: 359 81% 52%;
     --accent-foreground: 0 0% 100%;
 
     --border: 0 0% 90%;
     --input: 0 0% 90%;
-    --ring: 210 100% 45%;
+    --ring: 359 81% 52%;
 
     --surface: 0 0% 98%;
     --surface-elevated: 0 0% 100%;
     --text-secondary: 0 0% 45%;
     --glass-bg: 0 0% 100% / 0.9;
     --glass-border: 0 0% 0% / 0.1;
-    --shadow-glow: 0 0 60px hsl(210 100% 50% / 0.15);
+    --shadow-glow: 0 0 60px hsl(359 81% 52% / 0.15);
     --shadow-card: 0 4px 24px hsl(0 0% 0% / 0.08);
   }
 }

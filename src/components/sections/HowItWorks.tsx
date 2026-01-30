@@ -1,31 +1,31 @@
 import { motion } from "framer-motion";
 import { MousePointerClick, Calendar, Car } from "lucide-react";
-
-const steps = [
-  {
-    icon: MousePointerClick,
-    step: "01",
-    title: "Choose a Service",
-    description:
-      "Browse our packages and select the one that fits your needs and budget.",
-  },
-  {
-    icon: Calendar,
-    step: "02",
-    title: "Book a Time",
-    description:
-      "Pick a convenient date and time. We offer flexible scheduling including weekends.",
-  },
-  {
-    icon: Car,
-    step: "03",
-    title: "We Come to You",
-    description:
-      "Our professional team arrives at your location with all equipment needed.",
-  },
-];
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const HowItWorks = () => {
+  const { t } = useLanguage();
+
+  const steps = [
+    {
+      icon: MousePointerClick,
+      step: "01",
+      title: t.step1Title,
+      description: t.step1Desc,
+    },
+    {
+      icon: Calendar,
+      step: "02",
+      title: t.step2Title,
+      description: t.step2Desc,
+    },
+    {
+      icon: Car,
+      step: "03",
+      title: t.step3Title,
+      description: t.step3Desc,
+    },
+  ];
+
   return (
     <section className="section-padding bg-background relative overflow-hidden">
       {/* Background decoration */}
@@ -42,14 +42,13 @@ const HowItWorks = () => {
           className="text-center mb-16"
         >
           <span className="text-primary font-medium text-sm uppercase tracking-wider">
-            How It Works
+            {t.howItWorks}
           </span>
           <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mt-4 mb-6">
-            Simple as 1-2-3
+            {t.simpleAs123}
           </h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            Getting your car detailed has never been easier. We handle everything so you
-            can relax.
+            {t.howItWorksDesc}
           </p>
         </motion.div>
 

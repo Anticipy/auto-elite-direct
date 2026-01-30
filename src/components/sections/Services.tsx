@@ -1,64 +1,7 @@
 import { motion } from "framer-motion";
 import { Check, Sparkles, Car, Shield, Crown } from "lucide-react";
 import { Button } from "@/components/ui/button";
-
-const services = [
-  {
-    icon: Car,
-    title: "Basic Wash + Quick Vacuum",
-    price: "€50 – €90",
-    description: "Exterior wash and light interior vacuum",
-    features: [
-      "Full exterior hand wash",
-      "Wheel cleaning",
-      "Interior quick vacuum",
-      "Dashboard wipe down",
-    ],
-    popular: false,
-  },
-  {
-    icon: Sparkles,
-    title: "Basic Interior + Exterior",
-    price: "€80",
-    description: "Interior cleaning and exterior wash",
-    features: [
-      "Complete exterior wash",
-      "Interior vacuuming",
-      "Window cleaning",
-      "Air freshener",
-    ],
-    popular: false,
-  },
-  {
-    icon: Shield,
-    title: "Standard Detailing",
-    price: "€100 – €200",
-    description: "Deeper interior and exterior detailing",
-    features: [
-      "Full exterior detailing",
-      "Deep interior cleaning",
-      "Leather conditioning",
-      "Engine bay cleaning",
-      "Tire dressing",
-    ],
-    popular: true,
-  },
-  {
-    icon: Crown,
-    title: "Full Detailing",
-    price: "€400 – €450",
-    description: "Complete interior & exterior deep detail",
-    features: [
-      "Premium hand wash",
-      "Clay bar treatment",
-      "Paint correction",
-      "Interior deep clean",
-      "Ceramic coating",
-      "Premium protection",
-    ],
-    popular: false,
-  },
-];
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -80,6 +23,66 @@ const itemVariants = {
 };
 
 const Services = () => {
+  const { t } = useLanguage();
+
+  const services = [
+    {
+      icon: Car,
+      title: t.basicWashTitle,
+      price: "€50 – €90",
+      description: t.basicWashDesc,
+      features: [
+        t.basicWashFeature1,
+        t.basicWashFeature2,
+        t.basicWashFeature3,
+        t.basicWashFeature4,
+      ],
+      popular: false,
+    },
+    {
+      icon: Sparkles,
+      title: t.basicInteriorTitle,
+      price: "€80",
+      description: t.basicInteriorDesc,
+      features: [
+        t.basicInteriorFeature1,
+        t.basicInteriorFeature2,
+        t.basicInteriorFeature3,
+        t.basicInteriorFeature4,
+      ],
+      popular: false,
+    },
+    {
+      icon: Shield,
+      title: t.standardTitle,
+      price: "€100 – €200",
+      description: t.standardDesc,
+      features: [
+        t.standardFeature1,
+        t.standardFeature2,
+        t.standardFeature3,
+        t.standardFeature4,
+        t.standardFeature5,
+      ],
+      popular: true,
+    },
+    {
+      icon: Crown,
+      title: t.fullTitle,
+      price: "€400 – €450",
+      description: t.fullDesc,
+      features: [
+        t.fullFeature1,
+        t.fullFeature2,
+        t.fullFeature3,
+        t.fullFeature4,
+        t.fullFeature5,
+        t.fullFeature6,
+      ],
+      popular: false,
+    },
+  ];
+
   return (
     <section id="services" className="bg-surface section-padding">
       <div className="container-tight">
@@ -91,14 +94,13 @@ const Services = () => {
           className="text-center mb-16"
         >
           <span className="text-primary font-medium text-sm uppercase tracking-wider">
-            Our Services
+            {t.ourServices}
           </span>
           <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mt-4 mb-6">
-            Professional Detailing Packages
+            {t.professionalPackages}
           </h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            Choose the perfect package for your vehicle. All services include our mobile
-            convenience – we come directly to you.
+            {t.servicesDescription}
           </p>
         </motion.div>
 
@@ -109,7 +111,7 @@ const Services = () => {
           viewport={{ once: true }}
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
         >
-          {services.map((service, index) => (
+          {services.map((service) => (
             <motion.div
               key={service.title}
               variants={itemVariants}
@@ -122,7 +124,7 @@ const Services = () => {
               {service.popular && (
                 <div className="absolute -top-3 left-1/2 -translate-x-1/2">
                   <span className="bg-primary text-primary-foreground text-xs font-semibold px-4 py-1 rounded-full">
-                    Most Popular
+                    {t.mostPopular}
                   </span>
                 </div>
               )}
@@ -162,7 +164,7 @@ const Services = () => {
                 className="w-full"
                 asChild
               >
-                <a href="#contact">Book Now</a>
+                <a href="#contact">{t.bookNow}</a>
               </Button>
             </motion.div>
           ))}

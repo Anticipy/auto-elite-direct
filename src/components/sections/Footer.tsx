@@ -1,6 +1,12 @@
 import { Phone, Mail, Instagram, Facebook } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
+
+const PHONE_NUMBER = "+4915213022280";
+const PHONE_DISPLAY = "+49 152 1302 2280";
+const EMAIL = "info@mczdetailing.de";
 
 const Footer = () => {
+  const { t } = useLanguage();
   const currentYear = new Date().getFullYear();
 
   return (
@@ -10,56 +16,55 @@ const Footer = () => {
           {/* Brand */}
           <div>
             <h3 className="font-display text-2xl font-bold text-foreground mb-4">
-              Mobile<span className="text-primary">Detail</span>
+              mcz<span className="text-primary">detailing</span>
             </h3>
             <p className="text-muted-foreground text-sm mb-4">
-              Professional mobile car detailing service. We bring the car wash to you
-              with premium results.
+              {t.footerDescription}
             </p>
           </div>
 
           {/* Quick Links */}
           <div>
-            <h4 className="font-semibold text-foreground mb-4">Quick Links</h4>
+            <h4 className="font-semibold text-foreground mb-4">{t.quickLinks}</h4>
             <nav className="space-y-2">
               <a
                 href="#services"
                 className="block text-muted-foreground hover:text-primary transition-colors text-sm"
               >
-                Services & Pricing
+                {t.servicesAndPricing}
               </a>
               <a
                 href="#about"
                 className="block text-muted-foreground hover:text-primary transition-colors text-sm"
               >
-                About Us
+                {t.aboutUs}
               </a>
               <a
                 href="#contact"
                 className="block text-muted-foreground hover:text-primary transition-colors text-sm"
               >
-                Contact
+                {t.contact}
               </a>
             </nav>
           </div>
 
           {/* Contact */}
           <div>
-            <h4 className="font-semibold text-foreground mb-4">Contact Us</h4>
+            <h4 className="font-semibold text-foreground mb-4">{t.contactUs}</h4>
             <div className="space-y-3">
               <a
-                href="tel:+353123456789"
+                href={`tel:${PHONE_NUMBER}`}
                 className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors text-sm"
               >
                 <Phone className="w-4 h-4" />
-                +353 123 456 789
+                {PHONE_DISPLAY}
               </a>
               <a
-                href="mailto:info@mobiledetailing.com"
+                href={`mailto:${EMAIL}`}
                 className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors text-sm"
               >
                 <Mail className="w-4 h-4" />
-                info@mobiledetailing.com
+                {EMAIL}
               </a>
             </div>
 
@@ -89,10 +94,10 @@ const Footer = () => {
 
         <div className="pt-8 border-t border-border flex flex-col sm:flex-row justify-between items-center gap-4">
           <p className="text-muted-foreground text-sm">
-            © {currentYear} MobileDetail. All rights reserved.
+            © {currentYear} mczdetailing. {t.allRightsReserved}
           </p>
           <p className="text-muted-foreground text-xs">
-            Professional Mobile Car Detailing
+            {t.professionalMobileDetailing}
           </p>
         </div>
       </div>

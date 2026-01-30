@@ -1,30 +1,33 @@
 import { motion } from "framer-motion";
 import { Award, Clock, Leaf, ThumbsUp } from "lucide-react";
-
-const features = [
-  {
-    icon: Award,
-    title: "Professional Quality",
-    description: "Premium products and expert techniques for showroom results.",
-  },
-  {
-    icon: Clock,
-    title: "Convenient Service",
-    description: "We come to your home, office, or anywhere you need us.",
-  },
-  {
-    icon: Leaf,
-    title: "Eco-Friendly",
-    description: "Water-saving methods and biodegradable cleaning products.",
-  },
-  {
-    icon: ThumbsUp,
-    title: "Satisfaction Guaranteed",
-    description: "Not happy? We'll make it right, no questions asked.",
-  },
-];
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const About = () => {
+  const { t } = useLanguage();
+
+  const features = [
+    {
+      icon: Award,
+      title: t.professionalQuality,
+      description: t.professionalQualityDesc,
+    },
+    {
+      icon: Clock,
+      title: t.convenientService,
+      description: t.convenientServiceDesc,
+    },
+    {
+      icon: Leaf,
+      title: t.ecoFriendly,
+      description: t.ecoFriendlyDesc,
+    },
+    {
+      icon: ThumbsUp,
+      title: t.satisfactionGuaranteed,
+      description: t.satisfactionGuaranteedDesc,
+    },
+  ];
+
   return (
     <section id="about" className="section-padding bg-surface">
       <div className="container-tight">
@@ -36,30 +39,26 @@ const About = () => {
             transition={{ duration: 0.6 }}
           >
             <span className="text-primary font-medium text-sm uppercase tracking-wider">
-              About Us
+              {t.aboutUs}
             </span>
             <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mt-4 mb-6">
-              Your Car Deserves the Best Care
+              {t.aboutTitle}
             </h2>
             <p className="text-muted-foreground text-lg mb-6">
-              We're passionate about cars and dedicated to delivering exceptional mobile
-              detailing services. With years of experience and a commitment to excellence,
-              we bring the car wash to you.
+              {t.aboutText1}
             </p>
             <p className="text-muted-foreground text-lg mb-8">
-              Our team uses only premium products and proven techniques to ensure your
-              vehicle looks its absolute best. From a quick wash to a full detail, we
-              treat every car as if it were our own.
+              {t.aboutText2}
             </p>
 
             <div className="grid grid-cols-2 gap-4">
               <div className="text-center p-4 rounded-xl bg-card border border-border">
                 <span className="text-3xl font-bold text-primary">5+</span>
-                <p className="text-sm text-muted-foreground mt-1">Years Experience</p>
+                <p className="text-sm text-muted-foreground mt-1">{t.yearsExperience}</p>
               </div>
               <div className="text-center p-4 rounded-xl bg-card border border-border">
                 <span className="text-3xl font-bold text-primary">500+</span>
-                <p className="text-sm text-muted-foreground mt-1">Cars Detailed</p>
+                <p className="text-sm text-muted-foreground mt-1">{t.carsDetailed}</p>
               </div>
             </div>
           </motion.div>

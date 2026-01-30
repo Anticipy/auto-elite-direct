@@ -2,16 +2,21 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Phone, Menu, X } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
+import LanguageSwitcher from "@/components/LanguageSwitcher";
 
-const navLinks = [
-  { href: "#services", label: "Services" },
-  { href: "#about", label: "About" },
-  { href: "#contact", label: "Contact" },
-];
+const PHONE_NUMBER = "+4915213022280";
 
 const Header = () => {
+  const { t } = useLanguage();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  const navLinks = [
+    { href: "#services", label: t.services },
+    { href: "#about", label: t.about },
+    { href: "#contact", label: t.contact },
+  ];
 
   useEffect(() => {
     const handleScroll = () => {
@@ -34,7 +39,7 @@ const Header = () => {
         <div className="flex items-center justify-between h-16 sm:h-20">
           {/* Logo */}
           <a href="#" className="font-display text-xl sm:text-2xl font-bold text-foreground">
-            Mobile<span className="text-primary">Detail</span>
+            mcz<span className="text-primary">detailing</span>
           </a>
 
           {/* Desktop Nav */}
@@ -52,14 +57,15 @@ const Header = () => {
 
           {/* CTA Buttons */}
           <div className="hidden md:flex items-center gap-4">
+            <LanguageSwitcher />
             <Button variant="ghost" size="sm" asChild>
-              <a href="tel:+353123456789">
+              <a href={`tel:${PHONE_NUMBER}`}>
                 <Phone className="w-4 h-4" />
-                Call Now
+                {t.callNow}
               </a>
             </Button>
             <Button variant="default" size="sm" asChild>
-              <a href="#contact">Book Now</a>
+              <a href="#contact">{t.bookNow}</a>
             </Button>
           </div>
 
@@ -89,6 +95,9 @@ const Header = () => {
             className="md:hidden bg-background/95 backdrop-blur-lg border-b border-border"
           >
             <nav className="container-tight px-4 py-4 flex flex-col gap-4">
+              <div className="flex justify-center pb-2">
+                <LanguageSwitcher />
+              </div>
               {navLinks.map((link) => (
                 <a
                   key={link.href}
@@ -101,14 +110,14 @@ const Header = () => {
               ))}
               <div className="flex flex-col gap-3 pt-4 border-t border-border">
                 <Button variant="outline" asChild>
-                  <a href="tel:+353123456789">
+                  <a href={`tel:${PHONE_NUMBER}`}>
                     <Phone className="w-4 h-4" />
-                    Call Now
+                    {t.callNow}
                   </a>
                 </Button>
                 <Button variant="hero" asChild>
                   <a href="#contact" onClick={() => setIsMobileMenuOpen(false)}>
-                    Book Now
+                    {t.bookNow}
                   </a>
                 </Button>
               </div>
