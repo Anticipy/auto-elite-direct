@@ -9,7 +9,7 @@ import { useLanguage } from "@/contexts/LanguageContext";
 
 const PHONE_NUMBER = "+4915213022280";
 const PHONE_DISPLAY = "+49 152 1302 2280";
-const EMAIL = "info@mczdetailing.de";
+const EMAIL = "contact@mczdetailing.com";
 
 const Contact = () => {
   const { toast } = useToast();
@@ -22,12 +22,26 @@ const Contact = () => {
     message: "",
   });
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulate form submission
-    await new Promise((resolve) => setTimeout(resolve, 1000));
+    const subject = encodeURIComponent(
+      `Contact from mczdetailing – ${formData.name || "Website"}`
+    );
+    const body = encodeURIComponent(
+      [
+        formData.message,
+        "",
+        "---",
+        `Name: ${formData.name}`,
+        `Email: ${formData.email}`,
+        `Phone: ${formData.phone || "—"}`,
+      ].join("\n")
+    );
+    const mailtoUrl = `mailto:${EMAIL}?subject=${subject}&body=${body}`;
+
+    window.location.href = mailtoUrl;
 
     toast({
       title: t.messageSent,
