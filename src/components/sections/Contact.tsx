@@ -39,9 +39,11 @@ const Contact = () => {
         `Phone: ${formData.phone || "—"}`,
       ].join("\n")
     );
-    const mailtoUrl = `mailto:${EMAIL}?subject=${subject}&body=${body}`;
 
-    window.location.href = mailtoUrl;
+    // Use Gmail compose URL so it works on Windows (no default mail app needed)
+    // and opens in a new tab with the message pre-filled
+    const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(EMAIL)}&su=${subject}&body=${body}`;
+    window.open(gmailUrl, "_blank", "noopener,noreferrer");
 
     toast({
       title: t.messageSent,
