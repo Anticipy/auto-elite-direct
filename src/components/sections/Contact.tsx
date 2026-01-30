@@ -5,9 +5,15 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Phone, Mail, MapPin, MessageCircle, Send, Clock } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { useLanguage } from "@/contexts/LanguageContext";
+
+const PHONE_NUMBER = "+4915213022280";
+const PHONE_DISPLAY = "+49 152 1302 2280";
+const EMAIL = "info@mczdetailing.de";
 
 const Contact = () => {
   const { toast } = useToast();
+  const { t } = useLanguage();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
@@ -24,8 +30,8 @@ const Contact = () => {
     await new Promise((resolve) => setTimeout(resolve, 1000));
 
     toast({
-      title: "Message Sent!",
-      description: "We'll get back to you within 24 hours.",
+      title: t.messageSent,
+      description: t.messageConfirmation,
     });
 
     setFormData({ name: "", email: "", phone: "", message: "" });
@@ -41,8 +47,7 @@ const Contact = () => {
     }));
   };
 
-  const phoneNumber = "+353123456789"; // Replace with actual number
-  const whatsappLink = `https://wa.me/${phoneNumber.replace(/\+/g, "")}`;
+  const whatsappLink = `https://wa.me/${PHONE_NUMBER.replace(/\+/g, "")}`;
 
   return (
     <section id="contact" className="section-padding bg-background">
@@ -55,14 +60,13 @@ const Contact = () => {
           className="text-center mb-16"
         >
           <span className="text-primary font-medium text-sm uppercase tracking-wider">
-            Get In Touch
+            {t.getInTouch}
           </span>
           <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mt-4 mb-6">
-            Book Your Detailing
+            {t.bookYourDetailing}
           </h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            Ready to give your car the treatment it deserves? Contact us today for a
-            free quote.
+            {t.contactDescription}
           </p>
         </motion.div>
 
@@ -80,12 +84,12 @@ const Contact = () => {
                   <Phone className="w-6 h-6 text-primary" />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-foreground mb-1">Call Us</h3>
+                  <h3 className="font-semibold text-foreground mb-1">{t.callUs}</h3>
                   <a
-                    href={`tel:${phoneNumber}`}
+                    href={`tel:${PHONE_NUMBER}`}
                     className="text-muted-foreground hover:text-primary transition-colors"
                   >
-                    {phoneNumber}
+                    {PHONE_DISPLAY}
                   </a>
                 </div>
               </div>
@@ -95,12 +99,12 @@ const Contact = () => {
                   <Mail className="w-6 h-6 text-primary" />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-foreground mb-1">Email Us</h3>
+                  <h3 className="font-semibold text-foreground mb-1">{t.emailUs}</h3>
                   <a
-                    href="mailto:info@mobiledetailing.com"
+                    href={`mailto:${EMAIL}`}
                     className="text-muted-foreground hover:text-primary transition-colors"
                   >
-                    info@mobiledetailing.com
+                    {EMAIL}
                   </a>
                 </div>
               </div>
@@ -110,9 +114,9 @@ const Contact = () => {
                   <MapPin className="w-6 h-6 text-primary" />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-foreground mb-1">Service Area</h3>
+                  <h3 className="font-semibold text-foreground mb-1">{t.serviceArea}</h3>
                   <p className="text-muted-foreground">
-                    Serving the greater Dublin area and surrounding counties
+                    {t.serviceAreaText}
                   </p>
                 </div>
               </div>
@@ -122,10 +126,10 @@ const Contact = () => {
                   <Clock className="w-6 h-6 text-primary" />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-foreground mb-1">Working Hours</h3>
+                  <h3 className="font-semibold text-foreground mb-1">{t.workingHours}</h3>
                   <p className="text-muted-foreground">
-                    Mon - Sat: 8:00 AM - 6:00 PM<br />
-                    Sunday: By appointment
+                    {t.workingHoursText}<br />
+                    {t.sundayText}
                   </p>
                 </div>
               </div>
@@ -135,7 +139,7 @@ const Contact = () => {
             <Button variant="whatsapp" size="lg" className="w-full sm:w-auto" asChild>
               <a href={whatsappLink} target="_blank" rel="noopener noreferrer">
                 <MessageCircle className="w-5 h-5" />
-                Chat on WhatsApp
+                {t.chatOnWhatsapp}
               </a>
             </Button>
           </motion.div>
@@ -152,7 +156,7 @@ const Contact = () => {
                 <div>
                   <Input
                     name="name"
-                    placeholder="Your Name"
+                    placeholder={t.yourName}
                     value={formData.name}
                     onChange={handleChange}
                     required
@@ -163,7 +167,7 @@ const Contact = () => {
                   <Input
                     name="email"
                     type="email"
-                    placeholder="Email Address"
+                    placeholder={t.emailAddress}
                     value={formData.email}
                     onChange={handleChange}
                     required
@@ -174,7 +178,7 @@ const Contact = () => {
                   <Input
                     name="phone"
                     type="tel"
-                    placeholder="Phone Number"
+                    placeholder={t.phoneNumber}
                     value={formData.phone}
                     onChange={handleChange}
                     className="bg-background/50 border-border/50 h-12"
@@ -183,7 +187,7 @@ const Contact = () => {
                 <div>
                   <Textarea
                     name="message"
-                    placeholder="Tell us about your car and service needed..."
+                    placeholder={t.messageplaceholder}
                     value={formData.message}
                     onChange={handleChange}
                     required
@@ -199,11 +203,11 @@ const Contact = () => {
                   disabled={isSubmitting}
                 >
                   {isSubmitting ? (
-                    "Sending..."
+                    t.sending
                   ) : (
                     <>
                       <Send className="w-5 h-5" />
-                      Send Message
+                      {t.sendMessage}
                     </>
                   )}
                 </Button>
