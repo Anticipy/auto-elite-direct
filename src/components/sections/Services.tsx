@@ -23,7 +23,7 @@ const itemVariants = {
 };
 
 const Services = () => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
 
   const services = [
     {
@@ -87,6 +87,7 @@ const Services = () => {
     <section id="services" className="bg-surface section-padding">
       <div className="container-tight">
         <motion.div
+          key={`services-header-${language}`}
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -105,6 +106,7 @@ const Services = () => {
         </motion.div>
 
         <motion.div
+          key={`services-grid-${language}`}
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
